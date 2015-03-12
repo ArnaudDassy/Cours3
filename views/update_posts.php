@@ -31,7 +31,8 @@
 			<textarea name="body" id="body" col="30" rows="10" class="form-control"><?php echo $data['data']['body'] ?></textarea>
 			<p style="margin-top:10px;">
 				<a href="index.php" class="btn btn-lg btn-primary">Annuler</a>
-				
+				<input type="hidden" name="a" value="update">
+				<input type="hidden" name="e" value="posts">				
 				<input type="submit" value="Soumettre" class="btn btn-lg btn-primary">
 			</p>
 		</div>

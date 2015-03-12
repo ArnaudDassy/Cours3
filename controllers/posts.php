@@ -74,11 +74,11 @@ class Posts extends Base
 			if($_POST['newCategory'] != ''){
 				$this->postsModel->createCategory($_POST['newCategory']);
 				$this->postsModel->modifyMessage($_POST['signature'],$_POST['body'],$_POST['id'], $_POST['newCategory']);
-				header('Location: http://localhost/Cours3/index.php');
+				header('Location: http://localhost/Cours4/index.php');
 			}
 			elseif(count($errors) === 0){	
 				$this->postsModel->modifyMessage($_POST['signature'],$_POST['body'],$_POST['id'], $_POST['category']);
-				header('Location: http://localhost/Cours3/index.php');
+				header('Location: http://localhost/Cours4/index.php');
 			}
 		}
 
