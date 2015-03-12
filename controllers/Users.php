@@ -23,10 +23,10 @@ class Users extends Base
 		else{
 			$login=$_REQUEST['email'];
 			$mdp=$_REQUEST['password'];
-			$stay=$_REQUEST['stay'];
+			isset($_REQUEST['stay'])?$stay=$_REQUEST['stay']:$stay='';
 			if($this->postsModel->verifyUser($login,$mdp) == false){
 				$data['erreur']='erreur.php';
-				$data['erreurMessage']='Désolé, mais il semblerait que vos identifiants sont incorrectes';
+				$data['erreurMessage']='Désolé, mais il semblerait que vos identifiants soient incorrectes';
 				$data['connected'] ='formNotConnected.php';
 				return $data;
 			}
@@ -35,9 +35,37 @@ class Users extends Base
 			}
 		}
 	}
-	public function create($email,$password){
-		$this->postsModel->createUser($email,$password);
-		$this->postsModel->connect(['email' =>$email]);
+	public function create(){
+		$login=$_REQUEST['email'];
+		$mdp=$_REQUEST['password'];
+		$mdpConfirm=$_REQUEST['passwordConfirm'];
+		$data=[];
+		$data['view']='default.php';
+		$data['data'] = $this->postsModel->getPosts();
+		$data['categories'] = $this->postsModel->getCategories();
+		isset($_REQUEST['stay'])?$stay=$_REQUEST['stay']:$stay='';
+		if ($mdp != $mdpConfirm) {
+			$data['erreur']='erreur.php';
+			$data['erreurMessage']='Désolé mais les mots de passes semblent ne pas correspondre';
+			$data['connected'] ='formNotConnected.php';
+			return $data;
+		}
+		if(empty($_REQUEST['email']) || empty($_REQUEST['password']) ||empty($_REQUEST['passwordConfirm'])){
+			$data['erreur']='erreur.php';
+			$data['erreurMessage']='Désolé mais tout les champs doivent être complétés';
+			$data['connected'] ='formNotConnected.php';
+			return $data;
+		}
+		if ($this->postsModel->verifyUser($login,$mdp) == true) {
+			$data['erreur']='erreur.php';
+			$data['erreurMessage']='Désolé mais il semblerait que cet utilisateur existe déjà';
+			$data['connected'] ='formNotConnected.php';
+			return $data;
+		}
+		else{
+			$this->postsModel->createUser($login,$mdp);
+			$this->connect($login,$mdp,$stay);
+		}
 	}
 	public function disconnect(){
 		if (isset($_COOKIE['connected'])) {
@@ -54,7 +82,6 @@ class Users extends Base
 		if ($stay == 'on') {
 			setcookie("connected", 'blog', time()+36000);
 		}
-		
 		setcookie("name", $email, time()+36000);
 		header('Location: '.$_SERVER['QUERY_STRING']);
 	}

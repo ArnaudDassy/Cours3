@@ -105,4 +105,15 @@ class Posts extends Model
 			return true;
 		}
 	}
+	public function verifyIfUserExist($login){
+		$sql='SELECT email FROM users WHERE email=:email';
+		$pdost = $this->connexion->prepare($sql);
+		$pdost->execute([':email' => $login]);
+		if(empty($test)){
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
 }

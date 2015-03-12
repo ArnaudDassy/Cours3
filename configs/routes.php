@@ -8,3 +8,4 @@ $routes['update_posts']='update/posts';
 $routes['delete_posts']='delete/posts';
 $routes['check_users']='check/users';
 $routes['disconnect_users']='disconnect/users';
+$routes['create_users']='create/users';

@@ -38,7 +38,7 @@
 					<label for="passwordConfirm">Confirmer Mdp</label>
 					<input type="text" style="float:right;" name="passwordConfirm" id="passwordConfirm"  class="form-control" placeholder=''/>
 				</div>
-				<input type="hidden" name="a" value="check">
+				<input type="hidden" name="a" value="create">
 				<input type="hidden" name="e" value="users">
 				<div style="display:block;">
 					<input type="checkbox" style='margin-bottom:12px;' name="stay" id="stayConnected" />
