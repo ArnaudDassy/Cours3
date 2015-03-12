@@ -1,5 +1,6 @@
-<?php 
-class M_Posts extends Model
+<?php
+namespace Models;
+class Posts extends Model
 { 
 	public function getPost($id){
 		$sql= 'SELECT * FROM messages WHERE messages.id = :id';
@@ -74,5 +75,34 @@ class M_Posts extends Model
 
 		$res->execute([':id' => $idCat]);
 		return $res->fetch();;
+	}
+	public function getUser($email,$password){
+		$sql='SELECT * FROM users WHERE email=:email AND password=:password';
+		$pdost = $this->connexion->prepare($sql);
+		$pdost->execute([':email' => $email, 'password' => $password]);
+		return $pdost->fetch();
+	}
+	public function createUser($email,$password){
+		$sql='INSERT INTO users (email,password) VALUES (:email,:password)';
+		try{
+			$pdost = $this->connexion->prepare($sql);
+			$pdost->execute([':email' => $email, 'password' => $password]);
+			return true;
+		}
+		catch(PDOException $e){
+			return false;
+		}
+	}
+	public function verifyUser($login,$mdp){
+		$sql='SELECT * FROM users WHERE email=:email AND password=:password';
+		$pdost = $this->connexion->prepare($sql);
+		$pdost->execute([':email' => $login, 'password' => $mdp]);
+		$test=$pdost->fetch();
+		if(empty($test)){
+			return false;
+		}
+		else{
+			return true;
+		}
 	}
 }

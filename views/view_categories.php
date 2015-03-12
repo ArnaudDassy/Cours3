@@ -1,5 +1,6 @@
 <section class='posts'>
 	<h2>Liste des articles triée avec la catégorie : <em><?php echo $data['category']['name_cat']; ?></em></h2>
+	<?php include($data['connected']); ?>
 	<p><a href="index.php">Afficher tous les messages</a></p>
 	<article>
 		<?php foreach($data['data'] as $dataSolo) : ?>

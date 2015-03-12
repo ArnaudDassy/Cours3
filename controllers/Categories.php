@@ -1,10 +1,10 @@
 <?php
-
-class C_Categories extends C_Base
+namespace Controllers;
+class Categories extends Base
 {
 	private $postsModel = null;
 	public function __construct(){
-		$this->postsModel = new M_Posts();
+		$this->postsModel = new \Models\Posts();
 	}
 	public function index(){
 		

@@ -1,10 +1,12 @@
 <?php
+	session_start();
 	/*header('Location: http://www.google.com');*/
 	set_include_path('controllers;models;configs;views;'.get_include_path());
-	spl_autoload_register(function($className){
+	/*spl_autoload_register(function($className){
 		include($className.'.class.php');
-	});
-
+	});*/
+	require 'vendor/autoload.php';
+	
 
 
 	include('configs/routes.php');
@@ -23,7 +25,7 @@
 	
 
 	/*include('controllers/'.$e.'.php');*/
-	$controllerName = 'C_'.ucfirst($e);
-	$controller = new $controllerName;
+	$controllerName = '\Controllers\\'.ucfirst($e);
+	$controller = new $controllerName();
 	$data = call_user_func([$controller,$a]);	
 	include('views/layout.php');

@@ -1,4 +1,5 @@
 <section class='posts'>
+	<?php include($data['connected']); ?>
 	<h3 class="alert alert-danger"><strong>/!\</strong> Attention vous êtes sur le point de supprimer cet article !</h3>
 	<article>
 		<div class="message__heading panel panel-primary">

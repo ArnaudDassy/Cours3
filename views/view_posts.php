@@ -1,5 +1,6 @@
 <section class='posts'>
 	<h2>Liste des articles</h2>
+	<?php include($data['connected']); ?>
 	<article>
 		<div class="message__heading panel panel-primary">
 			<header class='panel panel-primary'>

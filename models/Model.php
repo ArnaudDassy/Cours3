@@ -1,5 +1,5 @@
 <?php 
-
+namespace Models;
 class Model{
 	protected $connexion = null;
 
@@ -7,7 +7,7 @@ class Model{
 	public function __construct(){
 		include('db.php');
 		try{
-			$this->connexion = new PDO(DSN,USERNAME,PASSWORD, $options);
+			$this->connexion = new \PDO(DSN,USERNAME,PASSWORD, $options);
 			$this->connexion->query('SET CHARACTER SET UTF8');
 			$this->connexion->query('SET NAMES UTF8');
 		}catch(PDOException $error){

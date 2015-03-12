@@ -1,5 +1,6 @@
 <section class='posts'>
 	<h2>Liste des articles</h2>
+	<?php include($data['connected']); ?>
 	<article>
 		<?php foreach($data['data'] as $dataSolo) : ?>
 			<div class="message__heading panel panel-primary">

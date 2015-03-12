@@ -1,0 +1,20 @@
+{
+    "name": "Arnaud/cours5",
+    "description": "Test2",
+    "require-dev": {
+        "nesbot/carbon": "~1.17"
+    },
+    "autoload":{
+        "psr-4":{
+            "Models\\":"models/",
+            "Controllers\\":"controllers/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Arnaud Dassy",
+            "email": "arnaud.dassy@gmail.com"
+        }
+    ],
+    "require": {}
+}

@@ -1,5 +1,6 @@
 <section>
 	<h2>Modifier un article</h2>
+	<?php include($data['connected']); ?>
 	<form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
 		<div class="form-group">
 			<div class="form-group">
